@@ -6,7 +6,7 @@
 
 An agent skill for applying business content to existing PPTX, DOCX, and XLSX templates while preserving their layout, visual style, and editable structure.
 
-![FormKeep: turn Excel data and a user-supplied PPT template into an on-brand analysis deck](docs/images/excel-to-ppt-hero.png)
+![FormKeep: fit business content into a user-supplied Office template while preserving its design](docs/images/excel-to-ppt-hero.en.png)
 
 > **MVP / experimental.** The hero image is a promotional composite based on a real template-fitting workflow, using entirely fictional business data. Directly rendered comparison pages appear below. FormKeep is a Skill plus helper scripts, not a standalone visual editor, and it does not promise that every arbitrary template will be free of layout issues.
 
@@ -20,14 +20,14 @@ FormKeep gives an agent a template-fitting contract: establish the facts and con
 
 | User-supplied template | Template-fitted analysis page |
 | --- | --- |
-| ![Original template overview](docs/images/template-overview.png) | ![Generated analysis overview](docs/images/report-overview.png) |
+| ![Original template overview, localized in English](docs/images/template-overview.en.png) | ![Generated analysis overview, localized in English](docs/images/report-overview.en.png) |
 
-These are directly rendered pages, not redraws from the promotional image. The output retains the top-left ornament, red-and-gold palette, four-card structure, and visual hierarchy. All business names and figures are fictional. These screenshots are not evidence of native PowerPoint rendering acceptance.
+These English-localized visuals are derived from direct slide renders and remain independent of the promotional hero. The output retains the top-left ornament, red-and-gold palette, four-card structure, and visual hierarchy. All business names and figures are fictional. These screenshots are explanatory visuals, not evidence of native PowerPoint rendering acceptance.
 
 <details>
 <summary>Another page: the original card and icon language reused for channel comparison</summary>
 
-![Channel comparison example](docs/images/report-channels.png)
+![Channel comparison example, localized in English](docs/images/report-channels.en.png)
 
 </details>
 

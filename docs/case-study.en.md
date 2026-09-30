@@ -31,6 +31,6 @@ These figures support variance reporting only. They do not prove that conversion
 
 The overview page maps its title and summary to the overall findings. The four existing red-and-gold cards hold revenue, attainment, regional contribution, and the channel gap. The channel page reuses the original template's four outlined icon cards for offline revenue, online revenue, offline uplift, and the online shortfall.
 
-The promotional hero was assembled with an image-generation tool and may contain scaling or redrawn details. `images/template-overview.png`, `images/report-overview.png`, and `images/report-channels.png` are direct renders that can be inspected independently. They are not native PowerPoint acceptance evidence and are not used to calculate a claimed "90% similarity."
+The promotional hero was assembled with an image-generation tool and may contain scaling or redrawn details. `images/template-overview.en.png`, `images/report-overview.en.png`, and `images/report-channels.en.png` are English-localized explanatory visuals derived from direct slide renders. The original Chinese direct renders remain available without the `.en` suffix. Neither set is native PowerPoint acceptance evidence or a basis for claiming "90% similarity."
 
 The original Excel workbook, complete PowerPoint template, final report containing real data, embedded fonts, and internal working records are not published.
