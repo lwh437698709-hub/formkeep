@@ -1,107 +1,111 @@
+<p align="right"><strong>English</strong> | <a href="README.zh-CN.md">简体中文</a></p>
+
 # FormKeep · 版如初
 
-### 把内容套进你的 Office 模板，版式仍如初
+### Fit content into your Office templates—without losing the original design
 
-An agent skill for applying business content to existing PPTX, DOCX, and XLSX templates—while preserving their layout, visual style, and editable structure.
+An agent skill for applying business content to existing PPTX, DOCX, and XLSX templates while preserving their layout, visual style, and editable structure.
 
-![FormKeep: Excel 数据和用户 PPT 模板生成同版式分析汇报](docs/images/excel-to-ppt-hero.png)
+![FormKeep: turn Excel data and a user-supplied PPT template into an on-brand analysis deck](docs/images/excel-to-ppt-hero.png)
 
-> **MVP / 实验阶段。** 上图是基于实际套版流程制作的宣传合成图，所有业务数据均为虚构示例。下方提供直接渲染的页面用于比较。FormKeep 是 Skill 和辅助脚本，不是独立的在线编辑器，也不承诺任意模板绝不跑版。
+> **MVP / experimental.** The hero image is a promotional composite based on a real template-fitting workflow, using entirely fictional business data. Directly rendered comparison pages appear below. FormKeep is a Skill plus helper scripts, not a standalone visual editor, and it does not promise that every arbitrary template will be free of layout issues.
 
-## 一个真实的办公场景
+## A real office workflow
 
-FormKeep 面向需要明确格式的办公交付：根据业务、汇报、求职、公文或数据呈现等目标，将新内容套入用户指定的 Office 模板。它覆盖 PPTX、DOCX 和 XLSX；下面的 Excel 数据分析到 PPT 汇报是一个代表性案例，不是能力边界。
+FormKeep is designed for format-sensitive office deliverables: business reporting, presentations, resumes, formal documents, and data communication. It fits new content into a user-supplied Office template and supports PPTX, DOCX, and XLSX. The Excel-analysis-to-PPT workflow below is one representative example, not the boundary of the product.
 
-“这份 Excel 是区域与渠道业绩数据。请分析预算达成与业务差异，再用我提供的公司 PPT 模板做汇报。配色、字体、卡片和图标都要沿用模板。”
+> "Analyze this regional and channel performance workbook, then present the findings in our company PowerPoint template. Keep the template's colors, typography, cards, and icons."
 
-FormKeep 为代理提供套版约束：先整理事实与分析结论，再注册模板中的可编辑区域，按区域容量组织内容，最后检查样式变化和版式。Excel 分析和原生 Office 渲染需要运行环境提供相应工具。
+FormKeep gives an agent a template-fitting contract: establish the facts and conclusions, register the editable regions, organize content within calibrated slot capacity, and finally check style and layout changes. Excel analysis and native Office rendering depend on tools available in the execution environment.
 
-| 用户提供的模板页 | 填入演示分析后的页面 |
+| User-supplied template | Template-fitted analysis page |
 | --- | --- |
-| ![原模板概览页](docs/images/template-overview.png) | ![演示分析概览页](docs/images/report-overview.png) |
+| ![Original template overview](docs/images/template-overview.png) | ![Generated analysis overview](docs/images/report-overview.png) |
 
-两张图是直接渲染的页面，不是宣传图重绘。保留了左上角装饰、红金配色、四卡片布局和层级。结果页的业务名称和数字为虚构内容，截图不代表 PowerPoint 原生渲染验收。
+These are directly rendered pages, not redraws from the promotional image. The output retains the top-left ornament, red-and-gold palette, four-card structure, and visual hierarchy. All business names and figures are fictional. These screenshots are not evidence of native PowerPoint rendering acceptance.
 
 <details>
-<summary>再看一页：沿用原有卡片与图标的渠道比较</summary>
+<summary>Another page: the original card and icon language reused for channel comparison</summary>
 
-![渠道比较演示](docs/images/report-channels.png)
+![Channel comparison example](docs/images/report-channels.png)
 
 </details>
 
-演示数据可在 [案例说明](docs/case-study.md) 中核对：预算 5,000 万元，收入 5,200 万元，达成率 104.0%。原始业务工作簿、完整模板和客户汇报不随仓库发布。
+The demonstration figures are traceable in the [English case study](docs/case-study.en.md): budget 50.0 million, actual revenue 52.0 million, and attainment 104.0%. The original business workbook, complete template, and customer report are not published.
 
-## 核心机制
+## How it works
 
-- **模板说明书**：提取 PPTX 颜色引用、字体、对象几何、图层顺序、锚点及资源指纹，先约束视觉语言再填内容。
-- **明确的内容槽位**：用稳定对象标识关联结构与模板。未标记模板需要先注册，不盲猜替换区域。
-- **双向容量约束**：每个槽位配置最小内容量、推荐/硬性上限、行数和可用布局状态。字符数只是预检，还要校准字体和实际渲染。
-- **版式优先适配**：在批准的边界内先拓宽文本框，再统一调整字号或使用紧凑版式。事实不可为了排版而改写，正文不能被悄悄截断。
-- **风格检查与交付门槛**：新增元素需要同类样式来源。超出配色、破坏锁定元素、缺少渲染证据，都不能用一个高总分掩盖。
+- **Template visual handbook:** extract PPTX color references, fonts, object geometry, z-order, anchors, and asset fingerprints before authoring, so the template's visual language constrains the content.
+- **Explicit content slots:** connect structure to the template with stable object identifiers. Unmarked templates must be registered before use; replacement regions are never guessed blindly.
+- **Bidirectional capacity constraints:** define minimum content, recommended and hard limits, line limits, and approved layout states per slot. Character count is only a preflight signal; font metrics and actual rendering still require calibration.
+- **Layout-first fitting:** within approved bounds, widen a text box before applying uniform font reduction or a compact layout state. Facts must not be rewritten merely to fit, and body copy must never be silently truncated.
+- **Style checks and delivery gates:** every new element needs a same-role style donor. Off-palette content, changes to protected elements, or missing render evidence cannot be hidden by a high aggregate score.
 
-## 支持范围与限制
+## Scope and limitations
 
-| 能力 | 当前范围 |
+| Capability | Current scope |
 | --- | --- |
-| PPTX | 命名形状槽位的纯文本填充；视觉说明书与结构样式审计 |
-| DOCX | 内容控件槽位的纯文本填充；需要目标编辑器校验分页与布局 |
-| XLSX | 指向单个单元格的命名槽位纯文本填充；不是通用公式/图表写入器 |
-| 可视化双向映射 | 提供结构规范与实现指导；不附带完整可视化编辑器 |
-| 字体替代、扩框、缩字 | Skill 要求记录并验证；当前填充脚本不会自动执行所有适配 |
-| Excel 分析与 PPT 图表 | 由代理配合外部表格/演示文稿工具完成，不由填充 CLI 自动完成 |
-| 原生渲染 | 需要用户环境提供 PowerPoint/Word/Excel 等目标引擎，仓库不包含渲染器 |
+| PPTX | Plain-text filling of named shape slots; visual handbook extraction and structural style audit |
+| DOCX | Plain-text filling of content-control slots; pagination and layout still require validation in the target editor |
+| XLSX | Plain-text filling of named slots that point to individual cells; not a general formula or chart writer |
+| Bidirectional visual mapping | Provides a structure contract and implementation guidance; does not include a complete visual editor |
+| Font substitution, box expansion, font reduction | The Skill requires these adaptations to be recorded and verified; current helper scripts do not automate every adjustment |
+| Excel analysis and PowerPoint charts | Performed by the agent with external spreadsheet and presentation tools, not by the filling CLI alone |
+| Native rendering | Requires a target engine such as PowerPoint, Word, or Excel in the user's environment; no renderer is bundled |
 
-**90/100 指什么？** 这是可配置工作流中的结构样式保真门槛：配色 25、字体 20、布局 25、资源 20、形状样式 10。每页及整体都须过线，且不能触犯红线。它不是像素相似度、感知相似度或跨模型成功率。没有原生视觉复核时，审计会返回 `needs-native-render-review`，不得宣称已保证不跑版。
+**What does 90/100 mean?** It is a configurable structural-style fidelity gate: palette 25, typography 20, layout 25, assets 20, and shape styling 10. Every slide and the overall deck must pass, with zero red-line violations. It is not a pixel-similarity score, a perceptual-similarity score, or a claim of cross-model reliability. Without native visual review, the audit returns `needs-native-render-review`; the output must not be described as guaranteed layout-safe.
 
-主题继承、复杂组合变换、字体可用性等仍需人工或目标引擎复核。详细规则见 [visual-contract.md](references/visual-contract.md)。
+Theme inheritance, complex group transforms, and font availability may still require human review or validation in the target engine. See [visual-contract.md](references/visual-contract.md) for the detailed rules.
 
-## 使用
+## Usage
 
-将整个仓库作为名为 `formkeep` 的 Skill 文件夹，放入支持 `SKILL.md` 的代理环境。保留 `scripts/`、`references/`、`assets/` 和 `agents/` 的相对目录关系。不同宿主的发现与安装方式可能不同。
+Place this repository in an agent environment that supports `SKILL.md`, using `formkeep` as the Skill folder name. Preserve the relative structure of `scripts/`, `references/`, `assets/`, and `agents/`. Discovery and installation details vary by host.
 
-示例提示词：
+Example prompt:
 
 ```text
-使用 $formkeep，分析我上传的 Excel 业绩数据，
-并使用我上传的 PPT 模板生成分析汇报。
-先建立模板视觉说明书和内容槽位，再确认容量与适配边界。
-沿用模板配色、字体、图标与布局。遇到无法安全容纳的内容，
-明确说明冲突，不截断数据、不擅自重设计。
+Use $formkeep to analyze the Excel performance data I uploaded
+and create a report using my PowerPoint template.
+Build the template visual handbook and content slots first, then confirm
+capacity and adaptation limits. Reuse the template's palette, typography,
+icons, and layout. If the content cannot fit safely, report the conflict;
+do not truncate facts or redesign the template without approval.
 ```
 
-### 辅助 CLI
+### Helper CLI
 
-辅助脚本使用 Python 3.10+ 标准库，不需要模型 API Key。脚本本身不执行网络请求；代理宿主如何处理上传内容取决于其配置，不能据此推断整个工作流离线。
+The helper scripts use the Python 3.10+ standard library and require no model API key. The scripts themselves do not make network requests. The agent host may still process uploaded content according to its own configuration, so this does not imply that the entire workflow is offline.
 
 ```bash
-# 对已标记的模板生成槽位清单；此时还未完成容量校准
+# Generate a slot inventory for an already marked template.
+# Capacity calibration is not complete at this stage.
 python3 scripts/office_template.py inspect TEMPLATE.pptx --to template-spec.json
 
-# 提取视觉说明书（JSON 与 Markdown）
+# Extract the visual handbook as JSON and Markdown.
 python3 scripts/pptx_style_guard.py extract TEMPLATE.pptx --to template-visual.json
 
-# 完成模板注册与校准后，验证并填充
+# Validate and fill after template registration and calibration.
 python3 scripts/office_template.py validate template-spec.json bindings.json
 python3 scripts/office_template.py fill TEMPLATE.pptx template-spec.json bindings.json draft.pptx --visual-book template-visual.json
 
-# 所有适配、图表编辑和导出完成后，审计最终文件
+# Audit the final file after all fitting, chart editing, and export work.
 python3 scripts/pptx_style_guard.py audit TEMPLATE.pptx final.pptx --plan style-plan.json --review render-review.json --to style-audit.json
 ```
 
-`style-plan.json` 和 `render-review.json` 需要按 [视觉约束规范](references/visual-contract.md) 编制，不能伪造通过证据。原生复核记录与最终文件哈希绑定。`assets/` 中的示例未经真实模板校准，不能直接当成可交付配置。
+Prepare `style-plan.json` and `render-review.json` according to the [visual contract](references/visual-contract.md). Passing evidence must not be fabricated, and native-review records are bound to the final file hash. The examples in `assets/` have not been calibrated against a real template and must not be treated as delivery-ready configuration.
 
-## 开发与验证
+## Development and validation
 
 ```bash
 python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ```
 
-测试覆盖槽位定位、容量约束和样式审计中的关键拒绝条件；不替代 Office 渲染或跨模型行为测试。
+The tests cover slot resolution, capacity constraints, and critical rejection paths in the style audit. They do not replace Office rendering or cross-model behavioral evaluation.
 
-主要入口：[Skill 执行规则](SKILL.md)、[格式支持](references/format-support.md)、[结构规范](references/template-spec.md)、[交付检查](references/quality-gates.md)。
+Key entry points: [Skill instructions](SKILL.md), [format support](references/format-support.md), [structure specification](references/template-spec.md), and [delivery gates](references/quality-gates.md).
 
-## 隐私与发布范围
+## Privacy and publication scope
 
-仓库仅包含 Skill、辅助脚本、虚构示例与经过内容检查的静态演示图。不要在 issue、提交或截图中上传客户数据、访问凭据、未授权模板、字体文件或带个人路径的运行日志。完整模板及相关视觉素材的权利归原权利人；公开截图不构成模板再分发授权。
+This repository contains only the Skill, helper scripts, fictional examples, and content-reviewed static demonstration images. Do not publish customer data, credentials, unauthorized templates, font files, or execution logs containing personal paths in issues, commits, or screenshots. Rights to complete templates and related visual assets remain with their respective owners; a public screenshot does not grant redistribution rights.
 
-当前未附带开源许可证，请勿将“公开仓库”解读为已获得任意使用或再分发授权。
+No open-source license is currently included. Do not interpret this public repository as a grant of permission to use or redistribute its contents.
