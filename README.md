@@ -8,7 +8,7 @@ An agent skill for applying business content to existing PPTX, DOCX, and XLSX te
 
 ![FormKeep: fit business content into a user-supplied Office template while preserving its design](docs/images/excel-to-ppt-hero.en.png)
 
-> **MVP / experimental.** The hero image is a promotional composite based on a real template-fitting workflow, using entirely fictional business data. Directly rendered comparison pages appear below. FormKeep is a Skill plus helper scripts, not a standalone visual editor, and it does not promise that every arbitrary template will be free of layout issues.
+> **MVP / experimental.** The hero image is a promotional composite based on a real template-fitting workflow, using entirely fictional business data. English-localized comparison visuals appear below; the source direct renders remain linked from the Chinese README. FormKeep is a Skill plus helper scripts, not a standalone visual editor, and it does not promise that every arbitrary template will be free of layout issues.
 
 ## A real office workflow
 
