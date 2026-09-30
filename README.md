@@ -1,14 +1,16 @@
 # FormKeep · 版如初
 
-### Excel 分析，套进你的 PPT 模板
+### 把内容套进你的 Office 模板，版式仍如初
 
-An agent skill for template-preserving Office reports. Bring your data and your presentation template; fit the findings into its existing design.
+An agent skill for applying business content to existing PPTX, DOCX, and XLSX templates—while preserving their layout, visual style, and editable structure.
 
 ![FormKeep: Excel 数据和用户 PPT 模板生成同版式分析汇报](docs/images/excel-to-ppt-hero.png)
 
 > **MVP / 实验阶段。** 上图是基于实际套版流程制作的宣传合成图，所有业务数据均为虚构示例。下方提供直接渲染的页面用于比较。FormKeep 是 Skill 和辅助脚本，不是独立的在线编辑器，也不承诺任意模板绝不跑版。
 
 ## 一个真实的办公场景
+
+FormKeep 面向需要明确格式的办公交付：根据业务、汇报、求职、公文或数据呈现等目标，将新内容套入用户指定的 Office 模板。它覆盖 PPTX、DOCX 和 XLSX；下面的 Excel 数据分析到 PPT 汇报是一个代表性案例，不是能力边界。
 
 “这份 Excel 是区域与渠道业绩数据。请分析预算达成与业务差异，再用我提供的公司 PPT 模板做汇报。配色、字体、卡片和图标都要沿用模板。”
 

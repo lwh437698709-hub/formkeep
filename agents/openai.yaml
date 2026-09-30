@@ -1,4 +1,4 @@
 interface:
   display_name: "FormKeep"
-  short_description: "Map and fill Office templates with layout-first fitting"
-  default_prompt: "Use $formkeep to register or fill this Office template while preserving its layout and visual style."
+  short_description: "Apply content to Office templates without layout drift"
+  default_prompt: "Use $formkeep to fit my content into this Office template while preserving its layout, visual style, and editable structure."
